@@ -11,5 +11,7 @@ services:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: flightsearch
     volumes:
+      # Trzeba zmienić ścieżkę do folderu z plikami bazy danych
       - /Users/1/IdeaProjects/FlightSearch/Docker/db:/var/lib/mysql
-      
+      # Komenda do inicjalizacji bazy danych w powershellu:
+      # cmd /c 'docker exec -i mysql-container mysql -uroot -prootpassword flightsearch < flightssearch.sql'
