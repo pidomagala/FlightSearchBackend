@@ -1,5 +1,6 @@
 package com.piotr.flightsearchapi.service.impl;
 
+import com.piotr.flightsearchapi.domain.FindFlightsByAirportsRequest;
 import com.piotr.flightsearchapi.domain.FindFlightsRequest;
 import com.piotr.flightsearchapi.domain.entity.Flight;
 import com.piotr.flightsearchapi.repository.FlightRepository;
@@ -25,7 +26,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public List<Flight> getFlightByNumber(String FlightNumber) {
+    public List<Flight> findFlightsByNumber(String FlightNumber) {
         return  flightRepository.findByFlightNumber(FlightNumber);
     }
 
@@ -83,7 +84,9 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public List<Flight> findFlightsByToAirportCodeAndFromAirportCode(String ToAirportCode, String FromAirportCode) {
-        return flightRepository.findByToAirportCodeAndFromAirportCode(ToAirportCode, FromAirportCode);
+    public List<Flight> findFlightsByToAirportCodeAndFromAirportCode(FindFlightsByAirportsRequest request) {
+        return flightRepository.findByToAirportCodeAndFromAirportCode(
+                request.ToAirportCode(), request.FromAirportCode()
+        );
     }
 }

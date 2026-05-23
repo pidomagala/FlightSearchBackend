@@ -29,12 +29,6 @@ public class UserController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    PasswordEncoder passwordEncoder;
-
-    @Autowired
     JwtUtils jwtUtils;
 
     private final UserService userService;
@@ -97,9 +91,17 @@ public class UserController {
             @PathVariable Integer userId,
             @Valid @RequestBody UpdateUserPasswordRequestDto updateUserPasswordRequestDto){
         String Password = userMapper.passwordFromDTO(updateUserPasswordRequestDto);
-        User user = userService.updateUserEmail(userId, Password);
+        User user = userService.updateUserPassword(userId, Password);
         UserDto updatedUserDto = userMapper.toDTO(user);
         return new ResponseEntity<>(updatedUserDto, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> eraseUser(
+            @PathVariable Integer userId
+    ){
+        userService.deleteUser(userId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 

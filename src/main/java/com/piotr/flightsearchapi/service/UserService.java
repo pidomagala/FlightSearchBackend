@@ -17,7 +17,7 @@ public interface UserService {
 
     User updateUserPassword(Integer Id, String PasswordHash);
 
-    void deleteUser(String email);
+    void deleteUser(Integer Id);
 
     List<User> findAllUsers();
 

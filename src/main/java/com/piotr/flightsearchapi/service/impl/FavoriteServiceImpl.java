@@ -24,12 +24,17 @@ public class FavoriteServiceImpl implements FavoriteService {
     }
 
     @Override
-    public Favorite createFavorite(CreateFavoriteRequest request) {
-        Favorite favorite = favoriteRepository.findByFlightId(request.FlightId());
+    public List<Favorite> getFavoriteByUserId(Integer userId) {
+        return favoriteRepository.findByUserId(userId);
+    }
+
+    @Override
+    public Favorite createFavorite(Integer userId, CreateFavoriteRequest request) {
+        Favorite favorite = favoriteRepository.findByUserIdAndFlightId(userId, request.FlightId());
         if(!(favorite == null)){
-            throw new IllegalArgumentException("Flight with this id already is in your favorites");
+            throw new IllegalArgumentException("Flight with this id is already in your favorites");
         }
-        return favoriteRepository.save(new Favorite(null, request.UserId(), request.FlightId()));
+        return favoriteRepository.save(new Favorite(null, userId, request.FlightId()));
     }
 
     @Override
