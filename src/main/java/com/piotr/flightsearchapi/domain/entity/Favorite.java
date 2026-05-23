@@ -8,13 +8,13 @@ public class Favorite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
-    private Integer UserId;
-    private Integer FlightId;
+    private int UserId;
+    private int FlightId;
 
     public Favorite() {
     }
 
-    public Favorite(Integer id, Integer userId, Integer flightId) {
+    public Favorite(Integer id, int userId, int flightId) {
         Id = id;
         UserId = userId;
         FlightId = flightId;
@@ -28,19 +28,19 @@ public class Favorite {
         Id = id;
     }
 
-    public Integer getUserId() {
+    public int getUserId() {
         return UserId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(int userId) {
         UserId = userId;
     }
 
-    public Integer getFlightId() {
+    public int getFlightId() {
         return FlightId;
     }
 
-    public void setFlightId(Integer flightId) {
+    public void setFlightId(int flightId) {
         FlightId = flightId;
     }
 

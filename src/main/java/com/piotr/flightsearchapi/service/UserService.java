@@ -11,6 +11,8 @@ public interface UserService {
 
     User createUser(CreateUserRequest request);
 
+    User loginUser(CreateUserRequest request);
+
     User updateUserEmail(Integer Id, String Email);
 
     User updateUserPassword(Integer Id, String PasswordHash);

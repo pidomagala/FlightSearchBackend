@@ -11,7 +11,7 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
     private String FlightNumber;
-    private Integer AirlineId;
+    private int AirlineId;
     private String FromAirportCode;
     private String ToAirportCode;
     private LocalDate DepartureTime;
@@ -24,7 +24,7 @@ public class Flight {
     public Flight() {
     }
 
-    public Flight(Integer id, String flightNumber, Integer airlineId, String fromAirportCode, String toAirportCode, LocalDate departureTime, LocalDate arrivalTime, FlightStatus status, String gate, String terminal) {
+    public Flight(Integer id, String flightNumber, int airlineId, String fromAirportCode, String toAirportCode, LocalDate departureTime, LocalDate arrivalTime, FlightStatus status, String gate, String terminal) {
         Id = id;
         FlightNumber = flightNumber;
         AirlineId = airlineId;
@@ -53,11 +53,11 @@ public class Flight {
         FlightNumber = flightNumber;
     }
 
-    public Integer getAirlineId() {
+    public int getAirlineId() {
         return AirlineId;
     }
 
-    public void setAirlineId(Integer airlineId) {
+    public void setAirlineId(int airlineId) {
         AirlineId = airlineId;
     }
 

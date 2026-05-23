@@ -3,7 +3,18 @@ package com.piotr.flightsearchapi.service.impl;
 import com.piotr.flightsearchapi.domain.CreateUserRequest;
 import com.piotr.flightsearchapi.domain.entity.User;
 import com.piotr.flightsearchapi.repository.UserRepository;
+import com.piotr.flightsearchapi.security.jwt.JwtUtils;
 import com.piotr.flightsearchapi.service.UserService;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +24,15 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
 
     private final UserRepository userRepository;
+    @Autowired
+    private JwtUtils jwtUtils;
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -31,8 +49,17 @@ public class UserServiceImpl implements UserService {
         if (getUserbyEmail(request.Email()).isPresent()) {
             throw new IllegalArgumentException("User with this email already exists");
         }
-        User user = new User(null, request.Email(), request.PasswordHash());
+        User user = new User(null, request.Email(), passwordEncoder.encode(request.PasswordHash()));
         return userRepository.save(user);
+    }
+
+    @Override
+    public User loginUser(CreateUserRequest request) {
+        User user = findUserByEmailAndPassword(request.Email(), request.PasswordHash());
+        if (user==null) {
+            throw new IllegalArgumentException("Wrong email or password");
+        }
+        return user;
     }
 
     @Override
@@ -52,7 +79,7 @@ public class UserServiceImpl implements UserService {
         if(user.getPasswordHash().equals(PasswordHash)){
             throw new IllegalArgumentException("Passwords must be different");
         }
-        user.setPasswordHash(PasswordHash);
+        user.setPasswordHash(passwordEncoder.encode(PasswordHash));
         return userRepository.save(user);
     }
 
