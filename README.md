@@ -4,8 +4,8 @@ Backend aplikacji internetowej umożliwiającej logowanie użytkowników, wyszuk
 
 ## Technologie
 * Java
-* Spring Boot (Web, Data JPA, Security)
-* Baza danych (MySQL)
+* Spring Boot: (Web, Data JPA, Security)
+* Baza danych: MySQL
 * Integracja z zewnętrznym API: AviationStack
 
 ---

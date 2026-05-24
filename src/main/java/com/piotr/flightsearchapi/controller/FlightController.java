@@ -1,6 +1,5 @@
 package com.piotr.flightsearchapi.controller;
 
-import com.piotr.flightsearchapi.domain.FindFlightsByAirportsRequest;
 import com.piotr.flightsearchapi.domain.dto.*;
 import com.piotr.flightsearchapi.domain.entity.Flight;
 import com.piotr.flightsearchapi.mapper.FlightMapper;
@@ -22,7 +21,7 @@ public class FlightController {
         this.flightMapper = flightMapper;
     }
 
-    @GetMapping
+    @GetMapping("/departureairport")
     public ResponseEntity<List<FlightDto>> findFlightsByStartingAirport(
             @RequestBody FindFlightsByDepartureAirportRequestDto requestDto
             ){
@@ -31,7 +30,7 @@ public class FlightController {
         return ResponseEntity.ok(flightsDtos);
     }
 
-    @GetMapping
+    @GetMapping("/arrivalairport")
     public ResponseEntity<List<FlightDto>> findFlightsByDestinationAirport(
             @RequestBody FindFlightsByArrivalAirportRequestDto requestDto
     ){
@@ -40,7 +39,7 @@ public class FlightController {
         return ResponseEntity.ok(flightsDtos);
     }
 
-    @GetMapping
+    @GetMapping("/departuretime")
     public ResponseEntity<List<FlightDto>> findFlightsByDepartureTime(
             @RequestBody FindFlightsByDepartureTimeRequestDto requestDto
     ){
@@ -49,7 +48,7 @@ public class FlightController {
         return ResponseEntity.ok(flightsDtos);
     }
 
-    @GetMapping
+    @GetMapping("/flightnumber")
     public ResponseEntity<List<FlightDto>> findFlightsByFlightNumber(
             @RequestBody FindFlightsByFlightNumberRequestDto requestDto
     ){
@@ -58,7 +57,7 @@ public class FlightController {
         return ResponseEntity.ok(flightsDtos);
     }
 
-    @GetMapping
+    @GetMapping("/arrivalanddeparture")
     public ResponseEntity<List<FlightDto>> findFlightsByArrivalAndDestination(
             @RequestBody FindFlightsByArrivalAndDestinationRequestDto requestDto
     ){
@@ -67,7 +66,7 @@ public class FlightController {
         return ResponseEntity.ok(flightsDtos);
     }
 
-    @GetMapping
+    @GetMapping("/arrivaldepartureandtime")
     public ResponseEntity<List<FlightDto>> findFlights(
             @RequestBody FindFlightsRequestDto requestDto
     ){

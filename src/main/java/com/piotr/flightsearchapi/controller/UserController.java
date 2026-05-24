@@ -75,7 +75,7 @@ public class UserController {
                 .body("Logout successful");
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping("/{userId}/email")
     public ResponseEntity<UserDto> updateUsersEmail(
             @PathVariable Integer userId,
             @Valid @RequestBody UpdateUserEmailRequestDto updateUserEmailRequestDto){
@@ -86,7 +86,7 @@ public class UserController {
     }
 
 
-    @PutMapping("/{userId}")
+    @PutMapping("/{userId}/password")
     public ResponseEntity<UserDto> updateUsersPassword(
             @PathVariable Integer userId,
             @Valid @RequestBody UpdateUserPasswordRequestDto updateUserPasswordRequestDto){
