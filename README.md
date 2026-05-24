@@ -17,10 +17,10 @@ Poniżej znajduje się lista wszystkich dostępnych zapytań HTTP (endpointów) 
 ### Uwierzytelnianie i Użytkownicy (Auth)
 Endpointy odpowiedzialne za rejestrację i logowanie.
 
-| Metoda HTTP | Ścieżka (URL) | Opis | Wymagane ciało żądania (Body) |
-|-------------|---------------|------|-------------------------------|
-| `POST` | `/api/v1/auth/register` | Rejestracja nowego użytkownika | Dane użytkownika (email, hasło) |
-| `POST` | `/api/v1/auth/login` | Logowanie użytkownika | Dane logowania (email, hasło) |
+| Metoda HTTP | Ścieżka (URL)         | Opis | Wymagane ciało żądania (Body) |
+|-------------|-----------------------|------|-------------------------------|
+| `POST` | `/api/v1/auth/signup` | Rejestracja nowego użytkownika | Dane użytkownika (email, hasło) |
+| `POST` | `/api/v1/auth/login`  | Logowanie użytkownika | Dane logowania (email, hasło) |
 
 ### Loty (Flights)
 Endpointy służące do wyszukiwania lotów oraz zarządzania bazą lotów.
