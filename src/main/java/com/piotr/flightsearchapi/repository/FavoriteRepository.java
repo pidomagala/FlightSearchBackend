@@ -11,9 +11,9 @@ import java.util.List;
 @Repository
 public interface FavoriteRepository extends JpaRepository<Favorite, Integer> {
 
-    @Query(value = "SELECT * FROM favorites WHERE UserId = :UserId", nativeQuery = true)
+    @Query(value = "SELECT * FROM favorites WHERE User_Id = :UserId", nativeQuery = true)
     List<Favorite> findByUserId(@Param("UserId") Integer UserId);
 
-    @Query(value = "SELECT * FROM favorites WHERE UserId = :UserId AND FlightId = :FlightId", nativeQuery = true)
+    @Query(value = "SELECT * FROM favorites WHERE User_Id = :UserId AND Flight_Id = :FlightId", nativeQuery = true)
     Favorite findByUserIdAndFlightId(@Param("UserId")Integer UserId, @Param("FlightId")int FlightId);
 }

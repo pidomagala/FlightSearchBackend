@@ -54,10 +54,11 @@ public class UserController {
             @Valid @RequestBody CreateUserRequestDto createUserRequestDto
     ) {
         CreateUserRequest createUserRequest = userMapper.fromDTO(createUserRequestDto);
-        User user = userService.loginUser(createUserRequest);
-        Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPasswordHash()));
 
+        Authentication authentication = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(createUserRequest.Email(), createUserRequest.PasswordHash()));
+
+        User user = userService.loginUser(createUserRequest);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();

@@ -11,22 +11,22 @@ import java.util.List;
 
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, Integer> {
-    @Query(value = "SELECT * FROM flights WHERE ToAirportCode = :ToAirportCode", nativeQuery = true)
+    @Query(value = "SELECT * FROM flights WHERE To_Airport_Code = :ToAirportCode", nativeQuery = true)
     List<Flight> findByToAirportCode(@Param("ToAirportCode") String ToAirportCode);
 
-    @Query(value = "SELECT * FROM flights WHERE FromAirportCode = :FromAirportCode", nativeQuery = true)
+    @Query(value = "SELECT * FROM flights WHERE From_Airport_Code = :FromAirportCode", nativeQuery = true)
     List<Flight> findByFromAirportCode(@Param("FromAirportCode") String FromAirportCode);
 
-    @Query(value = "SELECT * FROM flights WHERE DepartureTime = :DepartureTime", nativeQuery = true)
+    @Query(value = "SELECT * FROM flights WHERE Departure_Time = :DepartureTime", nativeQuery = true)
     List<Flight> findByDepartureTime(@Param("DepartureTime") LocalDate DepartureTime);
 
-    @Query(value = "SELECT * FROM flights WHERE FlightNumber  = :FlightNumber", nativeQuery = true)
+    @Query(value = "SELECT * FROM flights WHERE Flight_Number  = :FlightNumber", nativeQuery = true)
     List<Flight> findByFlightNumber(@Param("FlightNumber") String FlightNumber);
 
-    @Query(value ="SELECT * FROM flights  WHERE FromAirportCode = :FromAirportCode  AND ToAirportCode = :ToAirportCode", nativeQuery = true)
+    @Query(value ="SELECT * FROM flights  WHERE From_Airport_Code = :FromAirportCode  AND To_Airport_Code = :ToAirportCode", nativeQuery = true)
     List<Flight> findByToAirportCodeAndFromAirportCode(@Param("ToAirportCode") String ToAirportCode, @Param("FromAirportCode") String FromAirportCode);
 
-    @Query(value="SELECT * FROM flights WHERE FromAirportCode = :FromAirportCode AND ToAirportCode = :ToAirportCode AND DepartureTime = :DepartureTime", nativeQuery = true)
+    @Query(value="SELECT * FROM flights WHERE From_Airport_Code = :FromAirportCode AND To_Airport_Code = :ToAirportCode AND Departure_Time = :DepartureTime", nativeQuery = true)
     List<Flight> findByToAirportCodeAndFromAirportCodeAndDepartureTime(@Param("ToAirportCode") String ToAirportCode, @Param("FromAirportCode") String FromAirportCode, @Param("DepartureTime") LocalDate DepartureTime);
 
 

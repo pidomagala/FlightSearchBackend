@@ -51,6 +51,18 @@ public class FlightMapperImpl implements FlightMapper {
 
     @Override
     public FlightDto toDTO(Flight flight) {
-        return null;
+        if(flight == null) return null;
+        return new FlightDto(
+                flight.getId(),
+                flight.getFlightNumber(),
+                flight.getAirlineId(),
+                flight.getFromAirportCode(),
+                flight.getToAirportCode(),
+                flight.getDepartureTime(),
+                flight.getArrivalTime(),
+                flight.getStatus(),
+                flight.getGate(),
+                flight.getTerminal()
+        );
     }
 }

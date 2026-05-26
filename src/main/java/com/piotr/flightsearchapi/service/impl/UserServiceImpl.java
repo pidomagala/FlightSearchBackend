@@ -55,19 +55,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User loginUser(CreateUserRequest request) {
-        User user = findUserByEmailAndPassword(request.Email(), request.PasswordHash());
-        if (user==null) {
+        User user = userRepository.findByEmail(request.Email());
+
+        if (user == null) {
             throw new IllegalArgumentException("Wrong email or password");
         }
+        if (!passwordEncoder.matches(request.PasswordHash(), user.getPasswordHash())) {
+            throw new IllegalArgumentException("Wrong email or password");
+        }
+
         return user;
     }
 
     @Override
     public User updateUserEmail(Integer Id, String Email) {
-        User user = userRepository.findByEmail(Email);
-        if(!Objects.equals(user.getId(), Id)){
+        User newUser = userRepository.findByEmail(Email);
+        if(!(newUser == null)){
             throw new IllegalArgumentException("User with this email already exists");
         }
+        User user = userRepository.findById(Id)
+            .orElseThrow(() -> new IllegalArgumentException("User with this id does not exist"));
         user.setEmail(Email);
         return userRepository.save(user);
     }

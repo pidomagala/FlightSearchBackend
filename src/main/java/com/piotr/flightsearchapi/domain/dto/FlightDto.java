@@ -1,16 +1,18 @@
 package com.piotr.flightsearchapi.domain.dto;
 
+import com.piotr.flightsearchapi.domain.entity.FlightStatus;
+
 import java.time.LocalDate;
 
 public record FlightDto(
         Integer Id,
         String FlightNumber,
-        int AirlineId,
+        Integer AirlineId,
         String FromAirportCode,
         String ToAirportCode,
         LocalDate DepartureTime,
         LocalDate ArrivalTime,
-        String Status,
+        FlightStatus Status,
         String Gate,
         String Terminal
 ) {
