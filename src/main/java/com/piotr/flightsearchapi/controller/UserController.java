@@ -102,7 +102,7 @@ public class UserController {
             @PathVariable Integer userId
     ){
         userService.deleteUser(userId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.noContent().build();
     }
 
 
